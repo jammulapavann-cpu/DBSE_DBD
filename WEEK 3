@@ -1,0 +1,159 @@
+USE store_db 
+C
+REATE TABLE class ( 
+   id INT, 
+   name VARCHAR(30))
+;C
+
+REATE TABLE class_info ( 
+   id INT, 
+   address VARCHAR(30))
+;I
+NSERT INTO class VALUES(
+1,'abhi'),(
+2,'adam'),(
+3,'alex');I
+
+NSERT INTO class_info VALUES(
+1,'DELHI'),(
+2,'MUMBAI'),(
+3,'CHENNAI');S
+
+ELECT *F
+ROM classC
+ROSS JOIN class_info;S
+
+ELECT *F
+ROM classI
+NNER JOIN class_infoO
+N class.id = class_info.id;S
+
+ELECT *F
+ROM classN
+ATURAL JOIN class_info;I
+
+
+NSERT INTO class VALUES(
+5,'ashish');I
+
+NSERT INTO class_info VALUES(
+7,'NOIDA'),(
+8,'PANIPAT');S
+
+ELECT *F
+ROM classL
+EFT OUTER JOIN class_infoO
+N class.id=class_info.id;S
+
+ELECT *F
+ROM classL
+EFT JOIN class_infoO
+N class.id=class_info.idW
+HERE class_info.id IS NULL;S
+
+ELECT *F
+ROM classR
+IGHT OUTER JOIN class_infoO
+N class.id=class_info.id;S
+
+ELECT *F
+ROM classR
+IGHT JOIN class_infoO
+N class.id=class_info.idW
+HERE class.id IS NULL;S
+
+ELECT *F
+ROM classL
+EFT JOIN class_infoO
+N class.id = class_info.idU
+NIONS
+ELECT *F
+ROM classR
+IGHT JOIN class_infoO
+N class.id = class_info.id;S
+
+ELECT *F
+ROM classL
+EFT JOIN class_infoO
+N class.id = class_info.idW
+HERE class_info.id IS NULLU
+NIONS
+ELECT *F
+ROM classR
+IGHT JOIN class_infoO
+N class.id = class_info.idW
+HERE class.id IS NULL;C
+
+
+REATE TABLE first_table(i
+d INT,n
+ame VARCHAR(30))
+;C
+
+REATE TABLE second_table(i
+d INT,n
+ame VARCHAR(30))
+;I
+
+NSERT INTO first_table VALUES(
+1,'abhi'),(
+2,'adam');I
+
+NSERT INTO second_table VALUES(
+2,'adam'),(
+3,'chester');S
+
+
+ELECT * FROM first_tableU
+NIONS
+ELECT * FROM second_table;S
+
+
+ELECT name FROM first_tableU
+NIONS
+ELECT name FROM second_table;S
+
+ELECT * FROM first_tableU
+NION ALLS
+ELECT * FROM second_table;S
+
+
+ELECT COUNT(*)F
+ROM(
+S
+ELECT * FROM first_tableU
+NION ALLS
+ELECT * FROM second_table)
+ A;S
+
+ELECT * FROM first_tableI
+NTERSECTS
+ELECT * FROM second_table;S
+
+ELECT name FROM first_tableI
+NTERSECTS
+ELECT name FROM second_table;S
+
+ELECT * FROM first_tableE
+XCEPTS
+ELECT * FROM second_table;S
+
+ELECT name FROM first_tableE
+XCEPTS
+ELECT name FROM second_table;S
+
+ELECT c.id,c.name,ci.addressF
+ROM class cI
+NNER JOIN class_info ciO
+N c.id=ci.id;S
+
+ELECT c.id, 
+      c.name, 
+      CASE 
+          WHEN ci.address IS NULL 
+          THEN 'Address Missing' 
+          ELSE 'Address Available' 
+      END AS StatusF
+ROM class cL
+EFT JOIN class_info ciO
+N c.id=ci.id;
